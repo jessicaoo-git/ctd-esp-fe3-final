@@ -3,12 +3,22 @@ import {CssBaseline, ThemeProvider} from "@mui/material";
 import LayoutGeneral from "dh-marvel/components/layouts/layout-general";
 import {theme} from "dh-marvel/styles/material-theme";
 
-function MyApp({ Component, pageProps }: AppProps) {
+import type { NextPage } from 'next'
+import type { ReactElement, ReactNode } from 'react';
+
+export type NextPageWithLayout<T> = NextPage<T>  & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout<unknown> 
+}
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page)
   return <ThemeProvider theme={theme}>
     <CssBaseline />
-    <LayoutGeneral>
-      <Component {...pageProps} />
-    </LayoutGeneral>
+    {getLayout(<Component {...pageProps} />)}
     <style jsx global>{`
               /* Other global styles such as 'html, body' etc... */
 
