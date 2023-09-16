@@ -23,6 +23,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/react-credit-cards": "^0.8.1",
     "jest": "^29.0.2",
     "jest-environment-jsdom": "^29.0.2",
     "md5": "^2.3.0",
